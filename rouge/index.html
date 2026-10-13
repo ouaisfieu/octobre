@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observatoire Socio-Politique Belge - Octobre 2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        civic: {
+                            bg: '#F8FAFC',
+                            card: '#FFFFFF',
+                            primary: '#1E293B',
+                            accent: '#D97706',
+                            danger: '#DC2626',
+                            success: '#16A34A',
+                            info: '#2563EB',
+                            muted: '#64748B',
+                            border: '#E2E8F0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        .tab-btn.active {
+            border-bottom-color: #D97706;
+            color: #D97706;
+            font-weight: 700;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed min-h-screen flex flex-col">
+
+<!-- Chosen Palette: Slate & Warm Amber Civic Harmony (Background: Warm Neutral/Slate-50, Cards: White, Primary Text/Nav: Dark Slate, Accents: Amber & Indigo, Warning/Alert: Crimson) -->
+
+<!-- Application Structure Plan: 
+    1. Header & Navigation Bar: Sticky navigation with search bar and quick tab switches (Vue d'ensemble, Impasse Fédérale, Méthodologie & Armement, Front Social, Asymétrie Régionale, Baromètre & Prospective).
+    2. Executive KPI Header: Dynamic metrics cards showcasing critical Belgian indicators in October 2026 (Effort budgétaire recherché, Charge de la dette, Budget défense, Date clé du conclave et préavis de grève).
+    3. Tab Content 1 - Vue d'ensemble & Conjoncture: Synthetic summary, introductory rationale, interactive crisis timeline of October 2026.
+    4. Tab Content 2 - L'Impasse Budgétaire Fédérale (BDW vs BTW vs GLB): Interactive matrix comparing negotiation positions (N-VA, MR, Vooruit/Centristes), Chart.js chart for debt service projection (2026-2035).
+    5. Tab Content 3 - Failles Méthodologiques & Paradoxe du Réarmement: Interactive "Règle des Tiers vs Réalité" model simulator, comparison between social cuts and €34B military investments (F-35, Patriot, etc.).
+    6. Tab Content 4 - Front Social & Mobilisations: Interactive timeline of protests, Student vs Trade Union convergence details, IPPJ & security overload metrics, FGTB Nov 23 ultimatum.
+    7. Tab Content 5 - Asymétrie Fédérale & Entités Fédérées: Interactive entity selector (Fédéral, Wallonie, FWB, Bruxelles, Flandre) with budget breakdowns, measures, and popular satisfaction scores.
+    8. Tab Content 6 - Baromètre Électoral & 3 Scénarios Prospectifs: Interactive election intentions Chart.js (Wallonia, Brussels, Flanders), scenario switchers for the 2026-2029 horizons.
+    9. Global Footer & Modal Detail Viewer: Search function enabling term filtering across sections.
+-->
+
+<!-- Visualization & Content Choices:
+    - Debt Service Trajectory -> Line Chart (Chart.js Canvas) -> Mouse hover details -> Compares 2026 baseline with 2035 runaway debt.
+    - Negotiation Matrix -> Interactive HTML/CSS Grid with filter pills -> User selects issue -> Dynamically updates party positions.
+    - Règle des Tiers vs Reality -> Interactive Bar Chart & Toggle Simulator (Chart.js) -> Toggle theoretical vs observed -> Shows CPAS overload.
+    - Electoral Intentions -> Grouped Bar Chart (Chart.js) -> User toggles region -> Compares ideological shifts (Left/Right/Nationalist).
+    - Regional Entities Status -> Tabbed Interactive Selector Card -> Displays tailored entity facts, budgets, and popularity.
+    - Prospective Scenarios -> Interactive Accordion/Tabs with Risk Indicators -> Explores Scenario 1 (Compromise), Scenario 2 (Early elections), Scenario 3 (2029 Confederal shift).
+    - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. All visual components rely on HTML5 Canvas (Chart.js) and styled Tailwind CSS / Unicode glyphs.
+-->
+
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- TOP HEADER / NAV -->
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">🏛️</span>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight text-slate-100">Observatoire Socio-Politique Belge</h1>
+                        <p class="text-xs text-amber-400 font-medium">Analyse Critique & Prospective — Octobre 2026</p>
+                    </div>
+                </div>
+                <!-- Search & Status Badge -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="globalSearch" onkeyup="filterContent()" placeholder="Rechercher (ex: TVA, CPAS, OTAN)..." class="bg-slate-800 text-slate-200 text-xs rounded-full pl-8 pr-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-amber-500 w-56">
+                        <span class="absolute left-2.5 top-1.5 text-xs text-slate-400">🔍</span>
+                    </div>
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-900/80 text-red-200 border border-red-700 animate-pulse">
+                        ⚠️ Impasse Budget : 13 Octobre 2026
+                    </span>
+                </div>
+            </div>
+            <!-- Dynamic Navigation Tabs -->
+            <nav class="flex space-x-2 sm:space-x-6 overflow-x-auto custom-scrollbar border-t border-slate-800 text-xs sm:text-sm font-medium">
+                <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn py-3 px-1 border-b-2 border-transparent text-slate-300 hover:text-white whitespace-nowrap active">
+                    📊 Vue d'Ensemble
+                </button>
+                <button onclick="switchTab('impasse')" id="tab-impasse" class="tab-btn py-3 px-1 border-b-2 border-transparent text-slate-300 hover:text-white whitespace-nowrap">
+                    ⚖️ Impasse Fédérale (10 Md€)
+                </button>
+                <button onclick="switchTab('methodology')" id="tab-methodology" class="tab-btn py-3 px-1 border-b-2 border-transparent text-slate-300 hover:text-white whitespace-nowrap">
+                    🧮 Méthodologie & Réarmement
+                </button>
+                <button onclick="switchTab('social')" id="tab-social" class="tab-btn py-3 px-1 border-b-2 border-transparent text-slate-300 hover:text-white whitespace-nowrap">
+                    ✊ Front Social & Jeunesse
+                </button>
+                <button onclick="switchTab('regions')" id="tab-regions" class="tab-btn py-3 px-1 border-b-2 border-transparent text-slate-300 hover:text-white whitespace-nowrap">
+                    🗺️ Asymétries Régionales
+                </button>
+                <button onclick="switchTab('barometer')" id="tab-barometer" class="tab-btn py-3 px-1 border-b-2 border-transparent text-slate-300 hover:text-white whitespace-nowrap">
+                    🗳️ Baromètre & Prospective 2029
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- KEY METRICS STRIP (Always Visible) -->
+        <section class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm hover:border-amber-400 transition">
+                <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Effort Budgétaire Requis</div>
+                <div class="text-xl sm:text-2xl font-extrabold text-amber-600 mt-1">10,0 Md€</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">D'ici 2029 (Exigence UE / BNB)</div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm hover:border-red-400 transition">
+                <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Charge Dette (2026 → 2035)</div>
+                <div class="text-xl sm:text-2xl font-extrabold text-red-600 mt-1">16,7 → >50 Md€</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">2,5% du PIB → 5,9% du PIB</div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 transition">
+                <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Budget Défense 2026</div>
+                <div class="text-xl sm:text-2xl font-extrabold text-indigo-600 mt-1">12,7 Md€</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Cible OTAN : 3.5% à 5% PIB</div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-400 transition">
+                <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Report Discours PM</div>
+                <div class="text-xl sm:text-2xl font-extrabold text-slate-800 mt-1">13 Oct. 2026</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Chambre sans déclaration d'État</div>
+            </div>
+            <div class="col-span-2 sm:col-span-1 bg-gradient-to-br from-amber-500 to-red-600 text-white p-3.5 rounded-xl shadow-sm">
+                <div class="text-xs font-semibold uppercase tracking-wider text-amber-100">Ultimatum Syndical</div>
+                <div class="text-xl sm:text-2xl font-black mt-1">23 Nov. 2026</div>
+                <div class="text-[11px] text-amber-100 mt-0.5">Préavis de Grève Générale (FGTB)</div>
+            </div>
+        </section>
+
+        <!-- SEARCH ALERT BOX (If searching) -->
+        <div id="searchAlert" class="hidden bg-amber-50 border border-amber-300 text-amber-900 px-4 py-2 rounded-lg text-sm flex justify-between items-center">
+            <span>Résultats filtrés pour la recherche : <strong id="searchTerm"></strong></span>
+            <button onclick="clearSearch()" class="text-xs font-bold underline hover:text-amber-700">Effacer la recherche</button>
+        </div>
+
+        <!-- TAB CONTENT 1: VUE D'ENSEMBLE -->
+        <section id="content-overview" class="tab-content space-y-6">
+            <!-- Intro Paragraph -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex items-center space-x-2 text-amber-600 font-bold text-xs uppercase tracking-wider">
+                    <span>📌 Contextualisation Stratégique</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">La 56e Législature au Point de Rupture : Anatomie de la Crise d'Octobre 2026</h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Ce mardi 13 octobre 2026 constitue une étape charnière pour le gouvernement fédéral belge dirigé par Bart De Wever (N-VA). En ne prononçant pas la traditionnelle déclaration de politique générale devant le Parlement à la rentrée d'octobre, la coalition « Arizona » (N-VA, MR, Les Engagés, Vooruit, CD&V) officialise l'impasse sur le budget pluriannuel. Placé sous la procédure européenne pour déficit excessif (déficit public à -5,0 % du PIB) et menacé par l'effet « boule de neige » de la dette souveraine, le pouvoir exécutif fait face à un double front : une discorde interne inextricable sur l'arbitrage entre hausses de TVA et coupes dans la santé, et une contestation sociale massive marquée par la jonction syndicale-étudiante.
+                </p>
+            </div>
+
+            <!-- Visual Grid Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Timeline Card -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="font-bold text-slate-900 text-base flex items-center space-x-2">
+                        <span>⏱️</span>
+                        <span>Chronologie de l'Escalade (1er - 13 Octobre 2026)</span>
+                    </h3>
+                    <div class="relative border-l-2 border-amber-400 pl-4 ml-2 space-y-4 text-xs">
+                        <div>
+                            <span class="font-bold text-amber-700">7-8 Octobre :</span>
+                            <p class="text-slate-600">Avertissement solennel de la BNB et de l'Agence de la Dette sur l'enclenchement anticipé de l'effet boule de neige dès 2028-2029.</p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-amber-700">9 Octobre :</span>
+                            <p class="text-slate-600">Manifestation nationale à Bruxelles (30 000 à 50 000 personnes). Paralysie des transports, vols annulés et jonction avec le mouvement lycéen.</p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-amber-700">10 Octobre :</span>
+                            <p class="text-slate-600">Rupture du conclave budgétaire restreint (kern) après seulement 3 heures d'entretiens. Veto croisé du MR et de Vooruit.</p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-amber-700">11 Octobre :</span>
+                            <p class="text-slate-600">Entretiens bilatéraux infructueux menés par Bart De Wever. Échéance européenne du 15 octobre compromise.</p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-amber-700">12-13 Octobre :</span>
+                            <p class="text-slate-600">Grève des services publics, blocus dans les lycées et report indéfini du discours du Premier ministre à la Chambre.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategic Summary Matrix -->
+                <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl shadow-sm flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-xs text-amber-400 font-bold uppercase tracking-wider">Les 4 Piliers du Nœud Gordien Belge</span>
+                        <h3 class="text-lg font-bold text-white mt-1">Pourquoi la crise d'octobre 2026 est-elle systémique ?</h3>
+                        <ul class="mt-4 space-y-3 text-xs text-slate-300">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-amber-400 font-bold">•</span>
+                                <span><strong class="text-white">Le dilemme BDW / BTW / GLB :</strong> Arbitrage impossible entre relèvement massif de la TVA (N-VA), veto absolu sur les taxes (MR) et veto sur l'austérité sociale (Vooruit/Les Engagés).</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-amber-400 font-bold">•</span>
+                                <span><strong class="text-white">Le transfert de charges vers les CPAS :</strong> La limitation du chômage et le durcissement des contrôles maladie dérivent les coûts fédéraux vers les communes et CPAS sans financement compensatoire.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-amber-400 font-bold">•</span>
+                                <span><strong class="text-white">Le paradoxe du réarmement :</strong> Trajectoire militaire poussée vers 3,5% à 5% du PIB (34 Md€ d'investissements) alors que la santé subit 1,7 Md€ de coupes.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-amber-400 font-bold">•</span>
+                                <span><strong class="text-white">Asymétrie Nord-Sud :</strong> La Flandre sécurise ses budgets et ses filières militaires, tandis que la Wallonie et FWB s'enfoncent dans la précarité budgétaire et scolaire.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 text-xs text-slate-400">
+                        💡 <strong class="text-slate-200">Orientation :</strong> Explorez les onglets supérieurs pour naviguer à travers les données chiffrées, la matrice des partis et les scénarios prospectifs.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 2: IMPASSE BUDGÉTAIRE FÉDÉRALE -->
+        <section id="content-impasse" class="tab-content hidden space-y-6">
+            <!-- Intro Paragraph -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex items-center space-x-2 text-amber-600 font-bold text-xs uppercase tracking-wider">
+                    <span>⚖️ Arbitrages & Lignes Rouges</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">Le Conclave de l'Impasse : BDW, BTW ou GLB ?</h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Pour répondre aux exigences de la Commission européenne et dégager 10 milliards d'euros d'effort net à l'horizon 2029, le Premier ministre Bart De Wever a soumis un tableau budgétaire articulé sur une refonte de la TVA et une contraction drastique des dépenses de santé. La majorité se déchire : le MR refuse tout centime de taxe supplémentaire, dénonçant un effort 2027 concentré à 102 % sur les recettes, tandis que Vooruit et les centristes refusent le démantèlement du système de soins et du panier de la ménagère.
+                </p>
+            </div>
+
+            <!-- Interactive Negotiation Matrix -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <h3 class="font-bold text-slate-900 text-base">Matrice Interactive des Positions au Conclave (Octobre 2026)</h3>
+                    <!-- Filter Pills -->
+                    <div class="flex flex-wrap gap-1.5 text-xs">
+                        <button onclick="filterMatrix('all')" class="matrix-filter px-3 py-1 rounded-full bg-slate-900 text-white font-medium" id="mf-all">Tous les axes</button>
+                        <button onclick="filterMatrix('tva')" class="matrix-filter px-3 py-1 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200" id="mf-tva">TVA & Fiscalité</button>
+                        <button onclick="filterMatrix('sante')" class="matrix-filter px-3 py-1 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200" id="mf-sante">Soins de Santé</button>
+                        <button onclick="filterMatrix('index')" class="matrix-filter px-3 py-1 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200" id="mf-index">Indexation Salariale</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Table Grid -->
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-slate-700 uppercase font-semibold">
+                                <th class="p-3 w-1/5">Axe de Négociation</th>
+                                <th class="p-3 w-1/4">Proposition De Wever (N-VA)</th>
+                                <th class="p-3 w-1/4">Bloc Libéral (MR : Bouchez)</th>
+                                <th class="p-3 w-1/4">Bloc Social/Centriste (Vooruit/Engagés/CD&V)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-600">
+                            <tr class="matrix-row" data-category="tva">
+                                <td class="p-3 font-bold text-slate-900 bg-slate-50">Taux Normal TVA (21% → 22%)</td>
+                                <td class="p-3">Relèvement à 22 % pour rendement immédiat rattaché à 2027.</td>
+                                <td class="p-3 text-red-600 font-semibold">Veto absolu. Refus de toute hausse sur la consommation.</td>
+                                <td class="p-3">Ouverture conditionnelle si couplé à une justice fiscale stricte.</td>
+                            </tr>
+                            <tr class="matrix-row" data-category="tva">
+                                <td class="p-3 font-bold text-slate-900 bg-slate-50">Taux Réduits TVA (6% & 12% → 9%)</td>
+                                <td class="p-3">Fusion en un taux unique de 9 % (concessions horeca/construction).</td>
+                                <td class="p-3 text-red-600 font-semibold">Dénonciation d'un choc inflationniste et perte de pouvoir d'achat.</td>
+                                <td class="p-3 text-red-600 font-semibold">Veto de Vooruit sur le relèvement du taux 6% pour les aliments de base.</td>
+                            </tr>
+                            <tr class="matrix-row" data-category="sante">
+                                <td class="p-3 font-bold text-slate-900 bg-slate-50">Sécurité Sociale & Santé</td>
+                                <td class="p-3">Coupes de 4 Md€, dont 1,7 Md€ en santé et 5e vague réintégration malades.</td>
+                                <td class="p-3 text-emerald-600 font-semibold">Soutien aux coupes et renforcement des contrôles d'incapacité.</td>
+                                <td class="p-3 text-red-600 font-semibold">Blocage total (Vandenbroucke) : norme de croissance sous menace.</td>
+                            </tr>
+                            <tr class="matrix-row" data-category="index">
+                                <td class="p-3 font-bold text-slate-900 bg-slate-50">Indexation & Pouvoir d'Achat</td>
+                                <td class="p-3">Plafonnement forfaitaire >4 000€ bruts (salaires) et >2 000€ (allocations).</td>
+                                <td class="p-3">Défense de la compétitivité, inquiétude pour les classes moyennes.</td>
+                                <td class="p-3 text-red-600 font-semibold">Ligne rouge syndicale absolue : refus de toute nouvelle manipulation.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Chart Section: Debt Service Trajectory -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <div>
+                    <h3 class="font-bold text-slate-900 text-base">Trajectoire de la Charge d'Intérêts de la Dette Belge (2026 - 2035)</h3>
+                    <p class="text-xs text-slate-500">Source : Banque Nationale de Belgique (BNB) & Comité de Monitoring — Projection à politique inchangée</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="debtChart"></canvas>
+                </div>
+                <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-start space-x-2">
+                    <span class="text-base">⚠️</span>
+                    <span><strong>Avertissement BNB (7-8 Octobre 2026) :</strong> Sans ajustement structurel immédiat de 10 à 11 milliards d'euros, la charge annuelle d'intérêts dépassera 50 milliards d'euros dès 2035 (5,9% du PIB), enclenchant l'effet « boule de neige » dès 2028-2029.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 3: MÉTHODOLOGIE & RÉARMEMENT -->
+        <section id="content-methodology" class="tab-content hidden space-y-6">
+            <!-- Intro Paragraph -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex items-center space-x-2 text-amber-600 font-bold text-xs uppercase tracking-wider">
+                    <span>🧮 Analyse Critique de la Gouvernance</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">La Fragilité des Tableaux Budgétaires & L'Arbitrage « Beurre vs Canons »</h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Un examen approfondi des réformes de l'Arizona révèle d'importantes failles méthodologiques dénoncées par la Cour des comptes : surestimation des retours à l'emploi, charges invisibles transférées aux CPAS et rendement incertain de la taxe sur les plus-values. En parallèle, les investissements militaires explosent sous la direction de Theo Francken (N-VA), créant un contraste saisissant entre la rigueur imposée aux services publics et l'effort réarmement de 34 milliards d'euros.
+                </p>
+            </div>
+
+            <!-- Interactive Comparison: Règle des Tiers vs Reality -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Interactive Model Simulator -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-bold text-slate-900 text-base">Le Postulat de la « Règle des Tiers » vs Réalité 2026</h3>
+                        <span class="text-xs bg-slate-100 text-slate-600 font-semibold px-2 py-1 rounded-md">Chômage & Maladie</span>
+                    </div>
+                    <p class="text-xs text-slate-600">
+                        Le gouvernement a chiffré les économies sur les chômeurs exclus et les malades de longue durée en supposant que 1/3 retrouverait un emploi, 1/3 basculerait vers le CPAS, et 1/3 disparaîtrait des statistiques. Les données empiriques de 2026 invalident ce dogme.
+                    </p>
+                    
+                    <!-- Toggle Switch -->
+                    <div class="flex items-center justify-center space-x-4 bg-slate-100 p-2 rounded-xl text-xs font-semibold">
+                        <button onclick="updateTierChart('theoretical')" id="btn-tier-theo" class="px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-900">Modèle Théorique du Gouvernement</button>
+                        <button onclick="updateTierChart('real')" id="btn-tier-real" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">Réalité Observée 2026 (BNB / Villes)</button>
+                    </div>
+
+                    <!-- Chart Container -->
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="tierChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Defense vs Social Breakdown Card -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-base flex items-center space-x-2">
+                            <span>🪖</span>
+                            <span>Le Réarmement Militaire en chiffres (Plan 34 Md€)</span>
+                        </h3>
+                        <p class="text-xs text-slate-600 mt-1">
+                            Alors que la sécurité sociale subit une coupe demandée de 4 Md€, la Défense bénéficie d'une accélération capacitaire historique sans précédent depuis la guerre froide :
+                        </p>
+                        <div class="mt-4 space-y-2.5 text-xs">
+                            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 flex justify-between items-center">
+                                <div>
+                                    <strong class="text-slate-900">Budget Défense Annuel (2026) :</strong>
+                                    <div class="text-slate-500">Atteinte de la norme 2 % OTAN</div>
+                                </div>
+                                <span class="font-bold text-indigo-700 text-sm">12,7 Md€</span>
+                            </div>
+                            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 flex justify-between items-center">
+                                <div>
+                                    <strong class="text-slate-900">Contrats Fin Septembre 2026 :</strong>
+                                    <div class="text-slate-500">Patriot, Kongsberg, Radars Hensoldt</div>
+                                </div>
+                                <span class="font-bold text-indigo-700 text-sm">~1,0 Md€</span>
+                            </div>
+                            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 flex justify-between items-center">
+                                <div>
+                                    <strong class="text-slate-900">Nouvelles Doctrines OTAN (2026-2029) :</strong>
+                                    <div class="text-slate-500">Cible "dure" à 3,5% - 5,0% du PIB</div>
+                                </div>
+                                <span class="font-bold text-indigo-700 text-sm">23,3 à 33,2 Md€/an</span>
+                            </div>
+                            <div class="bg-amber-50 p-2.5 rounded-lg border border-amber-200 flex justify-between items-center">
+                                <div>
+                                    <strong class="text-amber-900">Écosystème Industriel Flamand :</strong>
+                                    <div class="text-amber-700">Fonds R&D Défense & Universités</div>
+                                </div>
+                                <span class="font-bold text-amber-800 text-sm">1,0 Md€</span>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote class="italic text-[11px] text-slate-500 border-l-2 border-indigo-500 pl-3">
+                        « La sécurité sociale est trop grasse [...] Retirer quelques milliards d'un budget de 200 milliards n'a rien d'inhumain. »
+                        <div class="font-bold text-slate-700 not-italic mt-0.5">— Theo Francken, Ministre de la Défense (N-VA)</div>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 4: FRONT SOCIAL & JEUNESSE -->
+        <section id="content-social" class="tab-content hidden space-y-6">
+            <!-- Intro Paragraph -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex items-center space-x-2 text-amber-600 font-bold text-xs uppercase tracking-wider">
+                    <span>✊ Mobilisations & Dérive Sécuritaire</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">L'Ébullition d'Octobre 2026 : Convergence Syndicale et Révolte Étudiante</h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Les journées des 9, 12 et 13 octobre 2026 ont concrétisé la jonction inédite entre le front commun syndical (FGTB, CSC, CGSLB) et la jeunesse étudiante francophone. Contestant à la fois les mesures d'austérité fédérales (index, chômage, santé) et le « décret-programme II » de la Fédération Wallonie-Bruxelles (hausse du minerval, suppression des repas gratuits), la rue a mis à l'épreuve les forces de l'ordre et mis en lumière la saturation des infrastructures étatiques.
+                </p>
+            </div>
+
+            <!-- Social Conflict Visual Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Strike Wave Card -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="text-amber-600 font-bold text-xs uppercase tracking-wider">01. Marathon Protestatif</div>
+                    <h3 class="font-bold text-slate-900 text-base">La Mobilisation du 9 Octobre</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        30 000 à 50 000 manifestants à Bruxelles. Blocage de Brussels Airport (140 vols annulés), de l'aéroport de Charleroi (Skeyes), paralysie des réseaux SNCB, STIB, TEC et De Lijn, et fermeture des parcs à conteneurs.
+                    </p>
+                    <div class="bg-red-50 p-2.5 rounded-lg border border-red-200 text-xs text-red-900 font-semibold">
+                        ⚡ Ultimatum FGTB : Grève Générale programmée la semaine du 23 novembre 2026 si l'index ou la TVA sont touchés.
+                    </div>
+                </div>
+
+                <!-- Youth Revolt Card -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="text-amber-600 font-bold text-xs uppercase tracking-wider">02. Front Éducatif FWB</div>
+                    <h3 class="font-bold text-slate-900 text-base">La Fronde Lycéenne & Étudiante</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Contestation massive du « Décret-programme II » porté par Élisabeth Degryse (Azur) : hausse du minerval supérieur à ~1 200 € (frappant 60% des étudiants), fin des repas gratuits, seuil de réussite fixé à 60 % sans moyens supplémentaires. Blocus des lycées (Jacqmain, etc.) jusqu'au 13 octobre.
+                    </p>
+                </div>
+
+                <!-- Security Strain Card -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="text-amber-600 font-bold text-xs uppercase tracking-wider">03. Appareil Régalien</div>
+                    <h3 class="font-bold text-slate-900 text-base">Tensions Policières & IPPJ</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Controverse sur la technique du « nacrage » (encerclement) assumée par P. Close (PS). Faillite logistique : 16 mineurs arrêtés le 9 octobre libérés immédiatement faute de places en IPPJ. Préavis de grève déposé par les syndicats de police le 11 octobre.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 5: ASYMÉTRIES RÉGIONALES -->
+        <section id="content-regions" class="tab-content hidden space-y-6">
+            <!-- Intro Paragraph -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex items-center space-x-2 text-amber-600 font-bold text-xs uppercase tracking-wider">
+                    <span>🗺️ Fédéralisme Asymétrique</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">Le Contraste des Entités Fédérées : Stabilité Flamande vs Rigueur Francophone</h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Les élections de juin 2024 ont engendré des majorités asymétriques dont les politiques budgétaires diffèrent radicalement. Tandis que la Flandre stabilise ses finances et capte les retombées de la défense, la Wallonie (coalition Azur) applique des coupes sévères dans l'emploi (APE) et la Région bruxelloise ressort essoufflée d'une crise de 613 jours sans gouvernement, au risque de replonger dans l'impasse sur le logement social (SLRB).
+                </p>
+            </div>
+
+            <!-- Regional Selector Container -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <!-- Region Buttons -->
+                <div class="flex flex-wrap gap-2 text-xs font-bold border-b border-slate-200 pb-3">
+                    <button onclick="selectRegion('wallonie')" id="reg-btn-wallonie" class="reg-btn px-4 py-2 rounded-xl bg-amber-500 text-white shadow-sm">Région Wallonne (Azur)</button>
+                    <button onclick="selectRegion('fwb')" id="reg-btn-fwb" class="reg-btn px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200">Fédération Wallonie-Bruxelles</button>
+                    <button onclick="selectRegion('bruxelles')" id="reg-btn-bruxelles" class="reg-btn px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200">Bruxelles-Capitale (7 Partis)</button>
+                    <button onclick="selectRegion('flandre')" id="reg-btn-flandre" class="reg-btn px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200">Région Flamande (N-VA/Vooruit/CD&V)</button>
+                </div>
+
+                <!-- Region Detail Display Card -->
+                <div id="regionDetailCard" class="space-y-4 text-xs">
+                    <!-- Dynamic Content Inserted by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 6: BAROMÈTRE & PROSPECTIVE 2029 -->
+        <section id="content-barometer" class="tab-content hidden space-y-6">
+            <!-- Intro Paragraph -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex items-center space-x-2 text-amber-600 font-bold text-xs uppercase tracking-wider">
+                    <span>🗳️ Tendances Électorales & Scénarios</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">Recomposition Politique et Horizons 2026–2029</h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    L'épreuve du pouvoir et l'austérité budgétaire ont inversé la dynamique politique issue de juin 2024. En Belgique francophone, le bloc de gauche (PS/PTB) reprend une nette ascendance, sanctionnant le MR et Les Engagés. En Flandre, la N-VA et le Vlaams Belang verrouillent plus de 50 % des voix. Cette polarisation grandissante alimente trois scénarios prospectifs quant à la stabilité du Royaume.
+                </p>
+            </div>
+
+            <!-- Chart Section: Electoral Intentions -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-base">Baromètre Électoral (Sondage de Mi-Législature 2026)</h3>
+                        <p class="text-xs text-slate-500">Intentions de vote (%) par région — Grand Baromètre</p>
+                    </div>
+                    <!-- Region Switcher for Chart -->
+                    <div class="flex space-x-1 text-xs">
+                        <button onclick="updatePollChart('wallonie')" id="poll-btn-wal" class="px-3 py-1 rounded-lg bg-slate-900 text-white font-medium">Wallonie</button>
+                        <button onclick="updatePollChart('bruxelles')" id="poll-btn-bru" class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">Bruxelles</button>
+                        <button onclick="updatePollChart('flandre')" id="poll-btn-fla" class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">Flandre</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="pollChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 3 Prospective Scenarios Grid -->
+            <div class="space-y-4">
+                <h3 class="font-bold text-slate-900 text-lg">Trois Scénarios Prospectifs (Fin 2026 – 2029)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Scenario 1 -->
+                    <div class="bg-white p-5 rounded-2xl border border-amber-300 shadow-sm space-y-3 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-amber-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase">Probabilité Haute</div>
+                        <div class="text-amber-700 font-bold text-xs uppercase tracking-wider">Scénario 1</div>
+                        <h4 class="font-bold text-slate-900 text-base">Le Compromis d'Usure & Choc Social de Novembre</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Accord a minima conclu avant le 31 octobre 2026. Le MR accepte des hausses d'accises déguisées, Vooruit valide des contrôles accrus sur les malades. Le gouvernement évite la chute immédiate mais déclenche la grève générale du 23 novembre 2026.
+                        </p>
+                        <div class="pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+                            <strong>Impact :</strong> Sursis politique pour l'Arizona, détérioration du climat social.
+                        </div>
+                    </div>
+
+                    <!-- Scenario 2 -->
+                    <div class="bg-white p-5 rounded-2xl border border-red-300 shadow-sm space-y-3 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase">Risque Systémique</div>
+                        <div class="text-red-700 font-bold text-xs uppercase tracking-wider">Scénario 2</div>
+                        <h4 class="font-bold text-slate-900 text-base">Rupture du Conclave & Élections Anticipées</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Veto irréconciliable entre Bouchez et Vandenbroucke. Démission de Bart De Wever mi-novembre et dissolution des Chambres. Sanctions financières de la Commission européenne et crise de confiance sur les taux d'intérêt belges début 2027.
+                        </p>
+                        <div class="pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+                            <strong>Impact :</strong> Ungouvernabilité record et crise financière souveraine.
+                        </div>
+                    </div>
+
+                    <!-- Scenario 3 -->
+                    <div class="bg-white p-5 rounded-2xl border border-indigo-300 shadow-sm space-y-3 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase">Horizon 2029</div>
+                        <div class="text-indigo-700 font-bold text-xs uppercase tracking-wider">Scénario 3</div>
+                        <h4 class="font-bold text-slate-900 text-base">Érosion Centrifuge & Basculement Confédéral</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            L'Arizona survit péniblement mais les trous budgétaires réapparaissent dès 2027-2028. En 2029, le choc électif oppose un Sud ancré à gauche à un Nord nationaliste (N-VA/VB >50%), rendant obligatoire une réforme confédérale radicale de l'État.
+                        </p>
+                        <div class="pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+                            <strong>Impact :</strong> Mutation institutionnelle définitive du modèle belge.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+                <div class="flex items-center space-x-2">
+                    <span class="text-lg">🏛️</span>
+                    <span class="font-bold text-slate-200">Observatoire Socio-Politique Belge 2026</span>
+                </div>
+                <div class="text-slate-500">
+                    Basé sur le Rapport Synthétique du 13 Octobre 2026 (BNB, Cour des Comptes, CRISP)
+                </div>
+            </div>
+            <p class="text-center sm:text-left text-slate-500 text-[11px]">
+                Plateforme d'analyse interactive réalisée pour la clarification des enjeux socio-budgétaires, des réformes du marché du travail, du réarmement capacitaire et de la prospective institutionnelle de la Belgique.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Data Objects
+        const regionalData = {
+            wallonie: {
+                title: "Région Wallonne — Coalition Azur (MR - Les Engagés)",
+                mp: "Adrien Dolimont (MR) — Cote de confiance : 19 %",
+                budget: "Dérapage de la dette. Mesures initiales d'austérité jugées insuffisantes en sept. 2026.",
+                measures: [
+                    "Coupes de 83,7 M€ dans l'emploi/APE (Communes -17,5 M€, Provinces -7,32 M€).",
+                    "Ponction de 60 M€ sur Wallonie Entreprendre + hausse du dividende.",
+                    "Vignette auto régionale 2027 (90 à 125 €/an).",
+                    "Hausses généralisées : TEC, eau (taxe dépollution), déchets, maisons de repos.",
+                    "Asphyxie des grandes villes : Charleroi anticipe un déficit de 97,5 M€ en 2027 avec la fin du plan Oxygène."
+                ],
+                sentiment: "Très critique. Chute de popularité d'A. Dolimont qualifié de 'pilote sans doctrine'."
+            },
+            fwb: {
+                title: "Fédération Wallonie-Bruxelles — Coalition Azur (MR - Les Engagés)",
+                mp: "Élisabeth Degryse (Les Engagés)",
+                budget: "Cure d'austérité drastique imposée via le 'Décret-programme II'.",
+                measures: [
+                    "Relèvement du minerval supérieur à ~1 200 €/an pour 60 % de la population étudiante.",
+                    "Suppression de la gratuité des repas scolaires.",
+                    "Fixation du seuil de réussite à 60 % dans le supérieur sans soutien pédagogique.",
+                    "Suppression de la première année différenciée dans le secondaire.",
+                    "Allongement des carrières enseignantes et coupes dans les travaux scolaires."
+                ],
+                sentiment: "Fronde sociale vive : manifestations unitaires profs/étudiants/parents et blocus des lycées."
+            },
+            bruxelles: {
+                title: "Région de Bruxelles-Capitale — Coalition à 7 Partis",
+                mp: "Boris Dilliès (MR) — Gouvernement installé fév. 2026 après 613 jours de crise",
+                budget: "Budget 2027 bouclé le 11 octobre 2026 sous menace d'asphyxie financière (Belfius/ING).",
+                measures: [
+                    "Centralisation de 10 administrations régionales et 14 M€ d'économies à la STIB.",
+                    "Nouvelle taxe de circulation au 1er juillet 2027.",
+                    "Report de l'interdiction Diesel Euro 5 (LEZ).",
+                    "Crise immédiate le 12 oct. : blocage de 131 M€ par le MR pour le logement social (SLRB), entraînant le départ du PS de la table."
+                ],
+                sentiment: "Extrêmement instable. Accusation d'écran de fumée du MR pour masquer l'impasse fédérale."
+            },
+            flandre: {
+                title: "Région Flamande — Coalition Tripartite (N-VA - Vooruit - CD&V)",
+                mp: "Matthias Diependaele (N-VA)",
+                budget: "Budget bouclé dans les temps, gestion budgétaire stabilisée.",
+                measures: [
+                    "Absorption de la part d'effort régional sollicitée par le fédéral (500 M€).",
+                    "Création d'un fonds d'un milliard d'euros dédié à l'écosystème militaro-industriel et universitaire flamand.",
+                    "Maintien des politiques d'activation du marché du travail.",
+                    "Rentabilisation des investissements technologiques et R&D Défense."
+                ],
+                sentiment: "Relativement calme sur le plan régional, alimentant la thèse des 'deux démocraties'."
+            }
+        };
+
+        const pollData = {
+            wallonie: {
+                labels: ['PS', 'MR', 'Les Engagés', 'PTB', 'Ecolo'],
+                datasets: [{
+                    label: 'Intentions de Vote Wallonie (%)',
+                    data: [27.9, 21.0, 19.4, 17.0, 7.9],
+                    backgroundColor: ['#DC2626', '#2563EB', '#D97706', '#991B1B', '#16A34A']
+                }]
+            },
+            bruxelles: {
+                labels: ['PTB', 'PS', 'MR', 'Les Engagés', 'Ecolo', 'DéFI'],
+                datasets: [{
+                    label: 'Intentions de Vote Bruxelles (%)',
+                    data: [25.5, 18.4, 16.4, 11.7, 7.1, 4.5],
+                    backgroundColor: ['#991B1B', '#DC2626', '#2563EB', '#D97706', '#16A34A', '#7C3AED']
+                }]
+            },
+            flandre: {
+                labels: ['N-VA', 'Vlaams Belang', 'Vooruit', 'CD&V', 'PVDA/PTB', 'Groen'],
+                datasets: [{
+                    label: 'Intentions de Vote Flandre (%)',
+                    data: [25.5, 25.4, 12.8, 12.6, 9.8, 7.7],
+                    backgroundColor: ['#F59E0B', '#1E293B', '#E11D48', '#0284C7', '#991B1B', '#16A34A']
+                }]
+            }
+        };
+
+        // Chart Instances
+        let debtChartObj = null;
+        let tierChartObj = null;
+        let pollChartObj = null;
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active', 'border-amber-500', 'text-amber-500', 'font-bold'));
+            
+            const targetContent = document.getElementById(`content-${tabId}`);
+            const targetBtn = document.getElementById(`tab-${tabId}`);
+            
+            if (targetContent) targetContent.classList.remove('hidden');
+            if (targetBtn) {
+                targetBtn.classList.add('active');
+            }
+
+            // Trigger chart renders on display
+            if (tabId === 'impasse' && !debtChartObj) initDebtChart();
+            if (tabId === 'methodology' && !tierChartObj) initTierChart();
+            if (tabId === 'barometer' && !pollChartObj) initPollChart();
+        }
+
+        // Initialize Debt Service Chart
+        function initDebtChart() {
+            const ctx = document.getElementById('debtChart').getContext('2d');
+            debtChartObj = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2026', '2028 (Alerte)', '2030', '2032', '2035 (Axiome)'],
+                    datasets: [{
+                        label: 'Charge de la dette (en Md€)',
+                        data: [16.7, 22.1, 30.5, 39.8, 50.2],
+                        borderColor: '#DC2626',
+                        backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    },
+                    {
+                        label: 'Part du PIB (%)',
+                        data: [2.5, 3.3, 4.1, 4.9, 5.9],
+                        borderColor: '#2563EB',
+                        borderDash: [5, 5],
+                        yAxisID: 'y1',
+                        fill: false,
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'Milliards d\'Euros (Md€)' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            title: { display: true, text: '% du PIB' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize Tier Model Chart
+        function initTierChart() {
+            const ctx = document.getElementById('tierChart').getContext('2d');
+            tierChartObj = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Emploi Retrouvé', 'Basculement CPAS/RIS', 'Disparition / Fonds propres'],
+                    datasets: [{
+                        label: 'Pourcentage des Exclus (%)',
+                        data: [33.3, 33.3, 33.3],
+                        backgroundColor: ['#16A34A', '#2563EB', '#64748B']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 70, title: { display: true, text: '% de la Population Exclue' } }
+                    }
+                }
+            });
+        }
+
+        function updateTierChart(mode) {
+            const btnTheo = document.getElementById('btn-tier-theo');
+            const btnReal = document.getElementById('btn-tier-real');
+
+            if (mode === 'theoretical') {
+                tierChartObj.data.datasets[0].data = [33.3, 33.3, 33.3];
+                tierChartObj.data.datasets[0].backgroundColor = ['#16A34A', '#2563EB', '#64748B'];
+                btnTheo.className = "px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-900 font-bold";
+                btnReal.className = "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900";
+            } else {
+                tierChartObj.data.datasets[0].data = [15.0, 48.0, 37.0];
+                tierChartObj.data.datasets[0].backgroundColor = ['#DC2626', '#D97706', '#64748B'];
+                btnReal.className = "px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-900 font-bold";
+                btnTheo.className = "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900";
+            }
+            tierChartObj.update();
+        }
+
+        // Initialize Poll Intentions Chart
+        function initPollChart() {
+            const ctx = document.getElementById('pollChart').getContext('2d');
+            pollChartObj = new Chart(ctx, {
+                type: 'bar',
+                data: pollData.wallonie,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 35, title: { display: true, text: 'Intentions de Vote (%)' } }
+                    }
+                }
+            });
+        }
+
+        function updatePollChart(region) {
+            document.querySelectorAll('#poll-btn-wal, #poll-btn-bru, #poll-btn-fla').forEach(b => {
+                b.className = "px-3 py-1 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+
+            if (region === 'wallonie') {
+                document.getElementById('poll-btn-wal').className = "px-3 py-1 rounded-lg bg-slate-900 text-white font-medium";
+                pollChartObj.data = pollData.wallonie;
+            } else if (region === 'bruxelles') {
+                document.getElementById('poll-btn-bru').className = "px-3 py-1 rounded-lg bg-slate-900 text-white font-medium";
+                pollChartObj.data = pollData.bruxelles;
+            } else if (region === 'flandre') {
+                document.getElementById('poll-btn-fla').className = "px-3 py-1 rounded-lg bg-slate-900 text-white font-medium";
+                pollChartObj.data = pollData.flandre;
+            }
+            pollChartObj.update();
+        }
+
+        // Matrix Filtering
+        function filterMatrix(category) {
+            document.querySelectorAll('.matrix-filter').forEach(btn => {
+                btn.className = "matrix-filter px-3 py-1 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+            document.getElementById(`mf-${category}`).className = "matrix-filter px-3 py-1 rounded-full bg-slate-900 text-white font-medium";
+
+            document.querySelectorAll('.matrix-row').forEach(row => {
+                if (category === 'all' || row.getAttribute('data-category') === category) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Select Region Card Logic
+        function selectRegion(key) {
+            document.querySelectorAll('.reg-btn').forEach(b => {
+                b.className = "reg-btn px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+            document.getElementById(`reg-btn-${key}`).className = "reg-btn px-4 py-2 rounded-xl bg-amber-500 text-white shadow-sm";
+
+            const data = regionalData[key];
+            const card = document.getElementById('regionDetailCard');
+            
+            let measuresHTML = data.measures.map(m => `<li class="flex items-start space-x-2"><span class="text-amber-500 font-bold">•</span><span>${m}</span></li>`).join('');
+
+            card.innerHTML = `
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">${data.title}</h4>
+                            <p class="text-slate-500 font-medium">${data.mp}</p>
+                        </div>
+                        <span class="bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 rounded-full text-[10px]">Statut Fédéré</span>
+                    </div>
+                    <div class="text-slate-700">
+                        <strong>Situation Budgétaire :</strong> ${data.budget}
+                    </div>
+                    <div>
+                        <strong class="text-slate-900">Mesures Structurelles & Impacts :</strong>
+                        <ul class="mt-2 space-y-1 text-slate-600">
+                            ${measuresHTML}
+                        </ul>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-slate-700 font-medium">
+                        📊 <strong>Climat Social & Politique :</strong> ${data.sentiment}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Global Search Logic
+        function filterContent() {
+            const query = document.getElementById('globalSearch').value.toLowerCase();
+            const alertBox = document.getElementById('searchAlert');
+            const termSpan = document.getElementById('searchTerm');
+
+            if (query.trim() === '') {
+                alertBox.classList.add('hidden');
+                return;
+            }
+
+            alertBox.classList.remove('hidden');
+            termSpan.textContent = query;
+
+            // Highlight or switch tabs if keyword is matched
+            if (query.includes('tva') || query.includes('sante') || query.includes('index')) {
+                switchTab('impasse');
+            } else if (query.includes('f-35') || query.includes('otan') || query.includes('tiers') || query.includes('cpas')) {
+                switchTab('methodology');
+            } else if (query.includes('greve') || query.includes('etudiant') || query.includes('ippj') || query.includes('fgtb')) {
+                switchTab('social');
+            } else if (query.includes('wallonie') || query.includes('flandre') || query.includes('bruxelles') || query.includes('ape')) {
+                switchTab('regions');
+            } else if (query.includes('sondage') || query.includes('scenario') || query.includes('2029')) {
+                switchTab('barometer');
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('globalSearch').value = '';
+            document.getElementById('searchAlert').classList.add('hidden');
+        }
+
+        // Initialize default view
+        window.addEventListener('DOMContentLoaded', () => {
+            selectRegion('wallonie');
+        });
+    </script>
+</body>
+</html>
