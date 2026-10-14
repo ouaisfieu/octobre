@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boule de Cristal 2035 | Simulateur Macro-Institutionnel & Prospective de la Polycrise Belge</title>
+    
+    <!-- Meta SEO de Premier Niveau -->
+    <meta name="description" content="Simulateur prospectif et analyse critique de la polycrise belge (2020-2035). Modélisez la trajectoire de la dette, l'impasse de la Loi Spéciale de Financement, la trappe de l'incapacité de travail et les 3 scénarios de réforme de l'État.">
+    <meta name="keywords" content="polycrise belge, simulateur dette belgique, prospective 2035, loi speciale de financement, deficit federal 2031, plan arizona, incapacite longue duree, inami, federalisme climatique, confederalisme, refederalisation, re-bel, comite de monitoring">
+    <meta name="author" content="Observatoire de la Gouvernance & Prospective Macro-Institutionnelle">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/">
+
+    <!-- Open Graph Protocol -->
+    <meta property="og:site_name" content="Boule de Cristal 2035 - Prospective Belge">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Boule de Cristal 2035 : Simulateur Prospectif de la Polycrise Belge">
+    <meta property="og:description" content="Explorez et simulez en temps réel les trajectoires budgétaires, sociales et institutionnelles de la Belgique à l'horizon 2035.">
+    <meta property="og:url" content="https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/">
+    <meta property="og:locale" content="fr_BE">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="article:published_time" content="2026-10-14T00:00:00+02:00">
+    <meta property="article:modified_time" content="2026-10-14T00:00:00+02:00">
+    <meta property="article:section" content="Macroéconomie & Science Politique">
+    <meta property="article:tag" content="Belgique">
+    <meta property="article:tag" content="Finances Publiques">
+    <meta property="article:tag" content="Simulateur Economique">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Simulateur & Prospective de la Polycrise Belge 2035">
+    <meta name="twitter:description" content="Modélisez l'impact des réformes budgétaires, du choc de l'incapacité de travail et des scénarios institutionnels pour la Belgique.">
+    <meta name="twitter:label1" content="Outil Interactif">
+    <meta name="twitter:data1" content="Simulateur Macro-Budgétaire temps réel">
+    <meta name="twitter:label2" content="Horizon">
+    <meta name="twitter:data2" content="2026–2035">
+
+    <!-- JSON-LD STRUCTURED DATA (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/#app",
+          "url": "https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/",
+          "name": "Boule de Cristal 2035 - Simulateur de la Polycrise Belge",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas.",
+          "description": "Simulateur interactif macro-institutionnel permettant de modéliser les politiques budgétaires, sociales et climatiques de la Belgique jusqu'en 2035."
+        },
+        {
+          "@type": "Article",
+          "@id": "https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/#article",
+          "isPartOf": {
+            "@type": "WebPage",
+            "@id": "https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/"
+          },
+          "headline": "Boule de Cristal 2035 : Modélisation et Prospective Systémique de la Polycrise Belge",
+          "description": "Analyse prospective approfondie des verrous institutionnels, de la trajectoire d'endettement public, du choc des invalides et de la révision de la Loi Spéciale de Financement.",
+          "datePublished": "2026-10-14T00:00:00+02:00",
+          "dateModified": "2026-10-14T00:00:00+02:00",
+          "inLanguage": "fr-BE",
+          "author": {
+            "@type": "Organization",
+            "name": "Observatoire de la Governance et de la Polycrise"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Unité de Recherche Macro-Institutionnelle Belgique",
+            "url": "https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/"
+          }
+        },
+        {
+          "@type": "Dataset",
+          "@id": "https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/#dataset-sim",
+          "name": "Projections et Scénarios Macroéconomiques Belges 2024-2035",
+          "description": "Données simulées de la dette publique, du déficit fédéral, du nombre d'invalides de longue durée et des dépenses de sécurité sociale.",
+          "variableMeasured": ["Dette/PIB", "Déficit Fédéral", "Charge d'Intérêts", "Malades de Longue Durée"],
+          "spatialCoverage": "Belgique"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Comment fonctionne le simulateur 'Boule de Cristal 2035' ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Le simulateur combine les équations de trajectoire de la dette du Bureau Fédéral du Plan et du Comité de Monitoring pour recalculer en direct le déficit, le ratio Dette/PIB, la charge d'intérêts et le risque de procédure européenne en fonction de 5 leviers politiques modifiables."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quel est l'impact de la Loi Spéciale de Financement (LSF) sur les Régions ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La LSF prévoit la fin progressive des mécanismes de transition pour la Wallonie et Bruxelles d'ici 2034, créant un choc financier cumulé accentué par le transfert de charges et la hausse des taux d'intérêt."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 330px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 370px;
+            }
+        }
+        .gradient-glow {
+            background: radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+        }
+        .active-transcript-sentence {
+            background-color: #fef3c7;
+            border-left: 4px solid #d97706;
+            padding-left: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: #d97706;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(217, 119, 6, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased pb-28 selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- Chosen Palette: Slate Navy (#0f172a), Warm Sand/Slate (#f8fafc / #1e293b), Amber Accent (#d97706 / #f59e0b), Terracotta (#dc2626), Emerald (#059669), Royal Blue (#2563eb) -->
+    
+    <!-- Application Structure Plan: 
+         Interactive Macro-Simulation & Prospective SPA ("Boule de Cristal 2035")
+         1. Hero Header with real-time ticker and SEO structured metadata.
+         2. Tab 1: "🔮 Boule Prospective & Simulateur 2035" - Real-time policy parameter sliders (effort budgétaire, norme santé, taux d'emploi, LSF, ETS2) recalculating debt, deficit, interest, & EU penalty risk in dynamic Chart.js canvas.
+         3. Tab 2: "🧠 Anatomie Systémique de la Polycrise" - Interactive causal feedback loops & structural bottleneck cards.
+         4. Tab 3: "📉 Impasse Budgétaire & Choc LSF" - Trajectory charts, sovereign rating matrix, LSF countdown clock.
+         5. Tab 4: "🩺 Fractures Sociales & Vases Communicants" - Crossover chart INAMI vs Chômage, CPAS spillover modeler.
+         6. Tab 5: "⚡ Climat, Énergie & État de Droit" - ESR -47% gap, ETS2 price impact calculator.
+         7. Tab 6: "🏛️ Scénarios Institutionnels 2035" - Dynamic comparator (Confédéralisme, 4 Régions, Refédéralisation).
+         8. Fixed Bottom Interactive SpeechSynthesis Bar with chapter selector and speed control.
+    -->
+
+    <!-- Visualization & Content Choices:
+         - Macro-Simulator: Vanilla JS mathematical model dynamically feeding 2 interactive Chart.js charts.
+         - Combo Chart (Chart.js): Simulated Debt/GDP & Deficit trajectory (2024-2035).
+         - Line Chart (Chart.js): Long term incapacity vs jobseekers crossover.
+         - Doughnut Chart (Chart.js): Budget envelope distribution.
+         - Radar / Matrix comparison for 2035 scenarios.
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- SEMANTIC HEADER / HERO -->
+    <header role="banner" class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-900 border-b border-slate-800 pt-8 pb-10 px-4 sm:px-6 lg:px-8 gradient-glow">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div>
+                    <nav aria-label="Fil d'Ariane" class="mb-3">
+                        <ol class="flex items-center space-x-2 text-xs text-slate-400">
+                            <li><a href="https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/" class="hover:underline text-amber-400">← Hub Principal</a></li>
+                            <li><span>/</span></li>
+                            <li><span>Prospective</span></li>
+                            <li><span>/</span></li>
+                            <li class="text-amber-400 font-medium">Boule de Cristal 2035</li>
+                        </ol>
+                    </nav>
+
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/30 mb-3">
+                        <span class="animate-pulse">🔮</span>
+                        <span>Laboratoire de Simulation Macro-Institutionnelle 2026–2035</span>
+                    </div>
+
+                    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                        Boule de Cristal 2035 : <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-red-400">Anatomie & Simulateur de la Polycrise Belge</span>
+                    </h1>
+                    <p class="mt-3 text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
+                        Exploration prospective et modélisation systémique : simulez en direct l'impact des réformes budgétaires, de l'explosion des invalides INAMI et de la révision de la Loi Spéciale de Financement.
+                    </p>
+                </div>
+
+                <!-- QUICK ACTIONS HEADER -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="switchTab('simulator')" class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold px-5 py-3 rounded-xl shadow-lg shadow-amber-900/30 transition-all transform hover:-translate-y-0.5">
+                        <span>🎛️</span>
+                        <span>Lancer le Simulateur Temporel</span>
+                    </button>
+                    <button onclick="playAllChapters()" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-4 py-3 rounded-xl font-medium text-sm transition-all">
+                        <span>🎧 Synthèse Vocale</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- DYNAMIC MACRO TICKER -->
+            <section aria-label="Indicateurs clés en direct" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 pt-6 border-t border-slate-800 text-slate-200">
+                <article class="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60 backdrop-blur">
+                    <h2 class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Déficit Fédéral 2026</h2>
+                    <p class="text-xl sm:text-2xl font-black text-red-400">25,7 Mrd € <span class="text-xs font-normal text-slate-400">(3,9% PIB)</span></p>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">Projeté à 44,5 Mrd € en 2031</span>
+                </article>
+                <article class="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60 backdrop-blur">
+                    <h2 class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Incapacité Longue Durée</h2>
+                    <p class="text-xl sm:text-2xl font-black text-amber-400">520 000 <span class="text-xs font-normal text-slate-400">actifs</span></p>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">Coût : 15,9 Mrd €/an (2,4% PIB)</span>
+                </article>
+                <article class="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60 backdrop-blur">
+                    <h2 class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Charge Dette 2031</h2>
+                    <p class="text-xl sm:text-2xl font-black text-orange-400">23,7 Mrd € <span class="text-xs font-normal text-slate-400">/an</span></p>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">+87 % v/s 2024 (Effet boule de neige)</span>
+                </article>
+                <article class="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60 backdrop-blur">
+                    <h2 class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Échéance Fin LSF</h2>
+                    <p class="text-xl sm:text-2xl font-black text-emerald-400">2034 <span class="text-xs font-normal text-slate-400">(-10%/an)</span></p>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">Choc de transition sur Wallonie/Bxl</span>
+                </article>
+            </section>
+        </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <nav role="navigation" aria-label="Navigation prospective" class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-slate-800 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div role="tablist" class="flex overflow-x-auto space-x-2 py-3 no-scrollbar text-xs sm:text-sm font-medium">
+                <button role="tab" aria-selected="true" aria-controls="sec-simulator" onclick="switchTab('simulator')" id="tab-simulator" class="tab-btn px-4 py-2.5 rounded-xl whitespace-nowrap bg-amber-500 text-slate-950 font-extrabold shadow-md transition">
+                    🔮 Boule Prospective & Simulateur 2035
+                </button>
+                <button role="tab" aria-selected="false" aria-controls="sec-systemic" onclick="switchTab('systemic')" id="tab-systemic" class="tab-btn px-4 py-2.5 rounded-xl whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800 transition">
+                    🧠 Anatomie Systémique
+                </button>
+                <button role="tab" aria-selected="false" aria-controls="sec-budget" onclick="switchTab('budget')" id="tab-budget" class="tab-btn px-4 py-2.5 rounded-xl whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800 transition">
+                    📉 Dette & Choc LSF
+                </button>
+                <button role="tab" aria-selected="false" aria-controls="sec-social" onclick="switchTab('social')" id="tab-social" class="tab-btn px-4 py-2.5 rounded-xl whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800 transition">
+                    🩺 Invalides & Modèle Social
+                </button>
+                <button role="tab" aria-selected="false" aria-controls="sec-climat" onclick="switchTab('climat')" id="tab-climat" class="tab-btn px-4 py-2.5 rounded-xl whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800 transition">
+                    ⚡ Climat, ETS2 & Droit
+                </button>
+                <button role="tab" aria-selected="false" aria-controls="sec-scenarios" onclick="switchTab('scenarios')" id="tab-scenarios" class="tab-btn px-4 py-2.5 rounded-xl whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800 transition">
+                    🏛️ Scénarios Institutionnels 2035
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINERS -->
+    <main role="main" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+
+        <!-- ================= TAB 1: SIMULATEUR PROSPECTIF MACRO-INSTITUTIONNEL ================= -->
+        <article id="sec-simulator" role="tabpanel" aria-labelledby="tab-simulator" class="tab-content block space-y-8">
+            
+            <!-- INTRODUCTORY CONTEXT PARAGRAPH -->
+            <section class="bg-gradient-to-br from-slate-800 to-slate-900 border border-amber-500/30 p-6 rounded-2xl shadow-xl">
+                <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+                    <span>🎛️</span> La Boule de Cristal 2035 : Moteur de Simulation Macro-Budgétaire
+                </h2>
+                <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+                    Ce module permet de tester en temps réel les hypothèses de politique économique et leurs conséquences systémiques sur la Belgique à l'horizon 2035. Ajustez les curseurs ci-dessous (effort d'assainissement, trajectoire d'emploi, croissance de la norme santé INAMI, responsabilisation régionale de la LSF et prix du carbone ETS2) pour observer la réaction immédiate de la dette publique, du déficit fédéral, des charges d'intérêts et du risque de sanctions européennes.
+                </p>
+                
+                <!-- PRESET BUTTONS -->
+                <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                    <span class="text-slate-400 font-semibold mr-1">Préréglages de Scénarios :</span>
+                    <button onclick="applyPreset('statusquo')" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-600 transition">
+                        ⚠️ Status Quo / Inaction
+                    </button>
+                    <button onclick="applyPreset('arizona')" class="bg-amber-600 hover:bg-amber-500 text-white px-3 py-1.5 rounded-lg font-medium transition">
+                        💼 Plan Arizona Strict (-23 Mrd €)
+                    </button>
+                    <button onclick="applyPreset('confederal')" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 rounded-lg font-medium transition">
+                        ⚡ Choc Confédéral / Autonomie LSF
+                    </button>
+                    <button onclick="applyPreset('green')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg font-medium transition">
+                        🌱 Accord Écologique & Refédéralisation
+                    </button>
+                </div>
+            </section>
+
+            <!-- SIMULATOR CONTROLS + REALTIME CHARTS GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- LEFT COLUMN: CONTROLS & SLIDERS (5 Cols) -->
+                <aside aria-label="Paramètres du simulateur" class="lg:col-span-5 bg-slate-800/90 p-6 rounded-2xl border border-slate-700 space-y-6 shadow-xl">
+                    <h3 class="text-base font-bold text-white border-b border-slate-700 pb-3 flex items-center justify-between">
+                        <span>⚙️ Leviers Politiques & Chocs</span>
+                        <span id="sim-scenario-tag" class="text-xs bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/30">Personnalisé</span>
+                    </h3>
+
+                    <!-- Slider 1: Consolidation Budgétaire -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <label for="range-effort" class="font-semibold text-slate-200">1. Effort d'Assainissement Fédéral</label>
+                            <span id="val-effort" class="font-bold text-amber-400">12,0 Mrd €/an</span>
+                        </div>
+                        <input type="range" id="range-effort" min="0" max="30" step="1" value="12" oninput="updateSimulation()" class="w-full bg-slate-700 h-2 rounded-lg appearance-none cursor-pointer">
+                        <p class="text-[11px] text-slate-400">Économies nettes ou recettes nouvelles cumulées d'ici 2029.</p>
+                    </div>
+
+                    <!-- Slider 2: Croissance Soins de Santé -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <label for="range-inami" class="font-semibold text-slate-200">2. Norme de Croissance Soins de Santé (INAMI)</label>
+                            <span id="val-inami" class="font-bold text-amber-400">2,5 % / an</span>
+                        </div>
+                        <input type="range" id="range-inami" min="1.0" max="4.0" step="0.1" value="2.5" oninput="updateSimulation()" class="w-full bg-slate-700 h-2 rounded-lg appearance-none cursor-pointer">
+                        <p class="text-[11px] text-slate-400">Taux de croissance annuel réel de l'enveloppe santé (hors inflation).</p>
+                    </div>
+
+                    <!-- Slider 3: Taux d'Emploi -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <label for="range-emploi" class="font-semibold text-slate-200">3. Taux d'Emploi Actifs (20-64 ans)</label>
+                            <span id="val-emploi" class="font-bold text-amber-400">75,5 % en 2030</span>
+                        </div>
+                        <input type="range" id="range-emploi" min="70.0" max="80.0" step="0.5" value="75.5" oninput="updateSimulation()" class="w-full bg-slate-700 h-2 rounded-lg appearance-none cursor-pointer">
+                        <p class="text-[11px] text-slate-400">Cible officielle 2030 : 80 %. Impact direct sur cotisations et chômage.</p>
+                    </div>
+
+                    <!-- Slider 4: Responsabilisation LSF -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <label for="range-lsf" class="font-semibold text-slate-200">4. Responsabilisation Régionale LSF</label>
+                            <span id="val-lsf" class="font-bold text-amber-400">50 % (Modéré)</span>
+                        </div>
+                        <input type="range" id="range-lsf" min="0" max="100" step="10" value="50" oninput="updateSimulation()" class="w-full bg-slate-700 h-2 rounded-lg appearance-none cursor-pointer">
+                        <p class="text-[11px] text-slate-400">Transfert de la dette et suppression du mécanisme de dotation de transition.</p>
+                    </div>
+
+                    <!-- Slider 5: Prix du Carbone ETS2 -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <label for="range-ets2" class="font-semibold text-slate-200">5. Prix Carbone ETS2 (Transports/Bâtiments)</label>
+                            <span id="val-ets2" class="font-bold text-amber-400">55 € / tonne</span>
+                        </div>
+                        <input type="range" id="range-ets2" min="30" max="130" step="5" value="55" oninput="updateSimulation()" class="w-full bg-slate-700 h-2 rounded-lg appearance-none cursor-pointer">
+                        <p class="text-[11px] text-slate-400">Application dès 2027. Surcoût carburant routier et chauffage mazout.</p>
+                    </div>
+
+                    <!-- DYNAMIC SIMULATED METRICS SUMMARY -->
+                    <div class="pt-4 border-t border-slate-700 bg-slate-900/60 p-4 rounded-xl space-y-3">
+                        <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Résultats Estimés à l'Horizon 2035</h4>
+                        
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div class="p-2 bg-slate-800 rounded border border-slate-700">
+                                <span class="text-slate-400 block text-[10px]">Ratio Dette / PIB 2035 :</span>
+                                <span id="out-dette-pib" class="text-base font-black text-amber-400">118,2 %</span>
+                            </div>
+                            <div class="p-2 bg-slate-800 rounded border border-slate-700">
+                                <span class="text-slate-400 block text-[10px]">Déficit Fédéral 2031 :</span>
+                                <span id="out-deficit-2031" class="text-base font-black text-red-400">28,4 Mrd €</span>
+                            </div>
+                            <div class="p-2 bg-slate-800 rounded border border-slate-700">
+                                <span class="text-slate-400 block text-[10px]">Charges d'intérêts 2035 :</span>
+                                <span id="out-interets" class="text-base font-black text-orange-400">18,2 Mrd €</span>
+                            </div>
+                            <div class="p-2 bg-slate-800 rounded border border-slate-700">
+                                <span class="text-slate-400 block text-[10px]">Surcoût Carburant Ménage :</span>
+                                <span id="out-carburant" class="text-base font-black text-emerald-400">+14,5 €/mois</span>
+                            </div>
+                        </div>
+
+                        <div id="out-eu-risk" class="p-2.5 rounded text-xs font-bold text-center bg-red-950 text-red-300 border border-red-800">
+                            🚨 Risque Procédure Européenne (PDE) : TRÈS ÉLEVÉ (Astreintes d'Amende)
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- RIGHT COLUMN: DYNAMIC SIMULATED CHARTS (7 Cols) -->
+                <section aria-label="Résultats graphiques de la simulation" class="lg:col-span-7 bg-slate-800/90 p-6 rounded-2xl border border-slate-700 flex flex-col justify-between space-y-6 shadow-xl">
+                    
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <span>📈</span> Trajectoire Simulée du Solde Budgétaire & Dette (2024–2035)
+                            </h3>
+                            <span class="text-[11px] text-slate-400">Mise à jour dynamique instantanée</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-4">
+                            Comparaison de la trajectoire simulée par vos leviers v/s le scénario de référence du Bureau Fédéral du Plan à politique inchangée.
+                        </p>
+
+                        <div class="chart-container">
+                            <canvas id="simChart" aria-label="Graphique dynamique de simulation budgétaire"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- DYNAMIC ANALYSIS READOUT BASED ON SIMULATION -->
+                    <div id="sim-commentary" class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 leading-relaxed">
+                        <!-- Populated by JS -->
+                    </div>
+
+                </section>
+
+            </div>
+
+        </article>
+
+        <!-- ================= TAB 2: ANATOMIE SYSTÉMIQUE DE LA POLYCRISE ================= -->
+        <article id="sec-systemic" role="tabpanel" aria-labelledby="tab-systemic" class="tab-content hidden space-y-8">
+            
+            <section class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+                    <span>🧠</span> Décomposition Systémique : La Spirale des Verrous Institutionnels
+                </h2>
+                <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+                    La polycrise belge ne découle pas d'un simple concours de chocs exogènes, mais de la synergie perverse entre trois vulnérabilités internes : la particratie unilingue sans arène politique fédérale, la dispersion des leviers de pouvoir socio-économiques entre Régions et Communautés, et le report systématique des arbitrages budgétaires structurels.
+                </p>
+            </section>
+
+            <!-- CAUSAL NODE MATRIX (NO SVG - FULL HTML/CSS GRID) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <article class="bg-slate-800 p-5 rounded-xl border-t-4 border-amber-500 border-x border-b border-slate-700 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Noeud 1</span>
+                        <span class="text-lg">🏛️</span>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Particratie Unilingue & Veto Dual</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        L'absence de circonscription électorale fédérale force les partis politiques à ne rendre compte qu'à leur seul électorat linguistique, incitant à la surenchère communautaire et à l'achat du compromis par la dépense publique.
+                    </p>
+                    <div class="pt-2 text-[11px] font-semibold text-amber-300 border-t border-slate-700">
+                        Résultat : Blocage des réformes structurelles du travail et des pensions.
+                    </div>
+                </article>
+
+                <article class="bg-slate-800 p-5 rounded-xl border-t-4 border-red-500 border-x border-b border-slate-700 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-red-400 uppercase tracking-wider">Noeud 2</span>
+                        <span class="text-lg">📉</span>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Effet Boule de Neige Financier</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Avec un déficit public supérieur à 5 % du PIB et une dette frôlant les 110 %, la remontée des taux d'intérêt alourdit automatiquement la charge de la dette (+13,7 Mrd € supplémentaires d'ici 2031).
+                    </p>
+                    <div class="pt-2 text-[11px] font-semibold text-red-300 border-t border-slate-700">
+                        Résultat : Éviction des budgets d'investissement d'avenir (Climat, R&D).
+                    </div>
+                </article>
+
+                <article class="bg-slate-800 p-5 rounded-xl border-t-4 border-orange-500 border-x border-b border-slate-700 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-orange-400 uppercase tracking-wider">Noeud 3</span>
+                        <span class="text-lg">🩺</span>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Trappe de l'Incapacité INAMI</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        La fermeture des portes de sortie en prépension et la rigidité du marché du travail ont transféré plus de 500 000 actifs vers l'incapacité de longue durée, coûtant plus cher que le régime de chômage global.
+                    </p>
+                    <div class="pt-2 text-[11px] font-semibold text-orange-300 border-t border-slate-700">
+                        Résultat : Transfert massif de charges du Fédéral vers la Sécurité Sociale.
+                    </div>
+                </article>
+
+                <article class="bg-slate-800 p-5 rounded-xl border-t-4 border-emerald-500 border-x border-b border-slate-700 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Noeud 4</span>
+                        <span class="text-lg">⚡</span>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Fédéralisme Climatique Paralysé</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        L'incapacité à s'accorder sur la répartition de l'effort européen ESR (-47 %) entre la Flandre, la Wallonie et Bruxelles expose le pays à des pénalités financières européennes massives d'ici 2030.
+                    </p>
+                    <div class="pt-2 text-[11px] font-semibold text-emerald-300 border-t border-slate-700">
+                        Résultat : Perte d'attractivité énergétique et risques juridiques accrus.
+                    </div>
+                </article>
+
+            </div>
+
+        </article>
+
+        <!-- ================= TAB 3: DETTE & CHOC LSF ================= -->
+        <article id="sec-budget" role="tabpanel" aria-labelledby="tab-budget" class="tab-content hidden space-y-8">
+            
+            <section class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+                            <span>📉</span> Impasse Budgétaire, Effet Boule de Neige & Extinction de la LSF
+                        </h2>
+                        <p class="text-xs text-slate-300 mt-1">
+                            Analyse détaillée du déficit fédéral, des notations souveraines et du choc d'extinction des dotations de transition pour la Wallonie et Bruxelles.
+                        </p>
+                    </div>
+                    <button onclick="playChapter(1)" class="text-xs bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold px-3 py-2 rounded-xl border border-amber-500/40 transition flex items-center gap-1 self-start">
+                        <span>🎧 Écouter le chapitre Budgétaire</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7">
+                        <div class="chart-container">
+                            <canvas id="debtChart" aria-label="Graphique d'évolution de la dette publique et de la charge d'intérêts"></canvas>
+                        </div>
+                    </div>
+
+                    <aside class="lg:col-span-5 bg-slate-900 p-5 rounded-xl border border-slate-700 space-y-4 text-xs">
+                        <h3 class="font-bold text-white text-sm border-b border-slate-800 pb-2">Matrice des Vulnerabilités Financières</h3>
+                        
+                        <div class="p-3 bg-red-950/60 border border-red-800 rounded-lg">
+                            <h4 class="font-bold text-red-300 text-sm">Choc d'Extinction LSF (2024–2034)</h4>
+                            <p class="text-slate-300 mt-1">
+                                La Loi Spéciale de Financement impose une réduction annuelle de 10 % des mécanismes de transition. La Wallonie subit une perte sèche cumulée de plusieurs centaines de millions d'euros par an, tandis que Bruxelles fait face à une urgence de refinancement.
+                            </p>
+                        </div>
+
+                        <div class="p-3 bg-amber-950/60 border border-amber-800 rounded-lg">
+                            <h4 class="font-bold text-amber-300 text-sm">Procédure Européenne pour Déficit Excessif (PDE)</h4>
+                            <p class="text-slate-300 mt-1">
+                                Ouverte le 19 juillet 2024 par la Commission Européenne. Exige un ajustement budgétaire structurel minimal de 0,5 % à 0,7 % du PIB par an (soit 3 à 4,5 Mrd €/an d'efforts nets sous peine d'astreintes financières).
+                            </p>
+                        </div>
+
+                        <div class="p-3 bg-slate-800 border border-slate-700 rounded-lg">
+                            <h4 class="font-bold text-slate-200">Notations Souveraines & Régionales (2026) :</h4>
+                            <div class="mt-2 grid grid-cols-2 gap-2 text-[11px]">
+                                <div><span class="text-slate-400">État Fédéral :</span> <strong class="text-amber-400">Moody's A1 / S&P AA-</strong></div>
+                                <div><span class="text-slate-400">Région Wallonne :</span> <strong class="text-red-400">Moody's Baa1 (Persp. Nég.)</strong></div>
+                                <div><span class="text-slate-400">Région Flamande :</span> <strong class="text-emerald-400">Fitch AA</strong></div>
+                                <div><span class="text-slate-400">Région Bruxelles :</span> <strong class="text-orange-400">S&P A+ (Sous pression)</strong></div>
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+            </section>
+
+        </article>
+
+        <!-- ================= TAB 4: FRACTURES SOCIALES & INVALIDES ================= -->
+        <article id="sec-social" role="tabpanel" aria-labelledby="tab-social" class="tab-content hidden space-y-8">
+            
+            <section class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+                            <span>🩺</span> Le Croisement Historique : Chômage v/s Incapacité de Longue Durée
+                        </h2>
+                        <p class="text-xs text-slate-300 mt-1">
+                            L'analyse empirique des transferts de charge au sein de la sécurité sociale belge (Données INAMI & Conseil Supérieur de l'Emploi).
+                        </p>
+                    </div>
+                    <button onclick="playChapter(2)" class="text-xs bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold px-3 py-2 rounded-xl border border-amber-500/40 transition flex items-center gap-1 self-start">
+                        <span>🎧 Écouter le chapitre Social</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7">
+                        <div class="chart-container">
+                            <canvas id="socialChart" aria-label="Graphique des courbes croisées entre chômeurs indemnisés et invalides"></canvas>
+                        </div>
+                    </div>
+
+                    <aside class="lg:col-span-5 bg-slate-900 p-5 rounded-xl border border-slate-700 space-y-4 text-xs">
+                        <div class="bg-amber-950/60 p-4 rounded-xl border border-amber-800">
+                            <h3 class="font-bold text-amber-300 text-sm">Le Séisme des 500 000 Malades de Longue Durée</h3>
+                            <p class="text-slate-300 mt-1 leading-relaxed">
+                                Le point de croisement s'est produit en 2016. En 2026, l'incapacité de travail de plus d'un an concerne **520 000 personnes** et coûte **15,9 Mrd €** par an à l'INAMI, dépassant le budget total des allocations de chômage.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
+                            <h4 class="font-bold text-white text-sm">Mécanique des Vases Communicants :</h4>
+                            <p class="text-slate-300">
+                                La fermeture du régime de prépension (RCC) et le relèvement de l'âge de la retraite à 66/67 ans ont déplacé les travailleurs usés physiquement ou psychologiquement (burn-out, TMS) du chômage vers l'assurance indemnités de l'INAMI.
+                            </p>
+                            <p class="text-slate-300 pt-2 border-t border-slate-700">
+                                ⚠️ <strong>Impact local CPAS :</strong> La limitation des allocations de chômage dans le temps entraîne un report mécanique estimé à **+905 M€/an** vers le revenu d'intégration sociale géré par les communes.
+                            </p>
+                        </div>
+                    </aside>
+
+                </div>
+            </section>
+
+        </article>
+
+        <!-- ================= TAB 5: CLIMAT, ETS2 & ÉTAT DE DROIT ================= -->
+        <article id="sec-climat" role="tabpanel" aria-labelledby="tab-climat" class="tab-content hidden space-y-8">
+            
+            <section class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+                            <span>⚡</span> Fédéralisme Climatique, Le Choc ETS2 & L'État de Droit
+                        </h2>
+                        <p class="text-xs text-slate-300 mt-1">
+                            Analyse du blocage de l'accord burden sharing (-47 % ESR) et des tensions sur l'exécution des décisions de justice.
+                        </p>
+                    </div>
+                    <button onclick="playChapter(3)" class="text-xs bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold px-3 py-2 rounded-xl border border-amber-500/40 transition flex items-center gap-1 self-start">
+                        <span>🎧 Écouter le chapitre Climat</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <article class="p-5 bg-slate-900 border border-emerald-500/40 rounded-xl space-y-2">
+                        <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Cible Européenne ESR 2030</span>
+                        <p class="text-3xl font-black text-emerald-400">-47 %</p>
+                        <p class="text-xs text-slate-300">
+                            Objectif contraignant de réduction des émissions hors marché du carbone (bâtiment, transport routier, agriculture). L'absence d'accord interfédéral expose la Belgique à l'achat obligatoire de quotas d'émission auprès d'autres États membres.
+                        </p>
+                    </article>
+
+                    <article class="p-5 bg-slate-900 border border-amber-500/40 rounded-xl space-y-2">
+                        <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Impact Carbone ETS2 (2027)</span>
+                        <p class="text-3xl font-black text-amber-400">+0,19 € / L</p>
+                        <p class="text-xs text-slate-300">
+                            Hausse estimée à la pompe pour l'essence et le diesel, et renchérissement du chauffage au mazout/gaz. Risque de précarité énergétique accrue pour les ménages modestes sans alternatives de mobilité passive.
+                        </p>
+                    </article>
+
+                    <article class="p-5 bg-slate-900 border border-red-500/40 rounded-xl space-y-2">
+                        <span class="text-red-400 text-xs font-bold uppercase tracking-wider">Tensions État de Droit</span>
+                        <p class="text-3xl font-black text-red-400">Astreintes</p>
+                        <p class="text-xs text-slate-300">
+                            La multiplication des décisions de justice non exécutées en matière d'accueil des demandeurs d'asile fragilise le principe de légalité administrative et alimente la crise de confiance citoyenne envers les institutions.
+                        </p>
+                    </article>
+
+                </div>
+            </section>
+
+        </article>
+
+        <!-- ================= TAB 6: SCÉNARIOS INSTITUTIONNELS 2035 ================= -->
+        <article id="sec-scenarios" role="tabpanel" aria-labelledby="tab-scenarios" class="tab-content hidden space-y-8">
+            
+            <section class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+                            <span>🏛️</span> Prospective Institutionnelle : Matrice Comparative 2026–2035
+                        </h2>
+                        <p class="text-xs text-slate-300 mt-1">
+                            Analyse systématique de la viabilité des trois modèles de réforme de l'État en prévision du rendez-vous institutionnel post-2029.
+                        </p>
+                    </div>
+                    <button onclick="playChapter(4)" class="text-xs bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold px-3 py-2 rounded-xl border border-amber-500/40 transition flex items-center gap-1 self-start">
+                        <span>🎧 Écouter le chapitre Prospective</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Scenario 1 -->
+                    <article class="bg-slate-900 border border-red-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-red-950 text-red-400 text-xs font-bold rounded-full border border-red-800 mb-3">Scénario 1</span>
+                            <h3 class="text-lg font-bold text-white">Confédéralisme / Fédéralisme Dissociatif Radical</h3>
+                            <p class="text-xs text-slate-400 mt-1">Porté par : N-VA, Vlaams Belang</p>
+                            
+                            <ul class="mt-4 text-xs text-slate-300 space-y-2.5">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-red-400 font-bold">•</span>
+                                    <span><strong>Souveraineté :</strong> Transfert de toutes les compétences aux deux entités fondatrices (Flandre et Wallonie). Le pouvoir fédéral ne gère que le régalien négocié.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-red-400 font-bold">•</span>
+                                    <span><strong>Sécurité Sociale :</strong> Scission des régimes de santé et d'emploi. Fin des transferts interrégionaux automatiques.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-red-400 font-bold">•</span>
+                                    <span><strong>Bruxelles :</strong> Statut de territoire co-géré avec régime de souscription fiscale individuelle pour les résidents.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <footer class="pt-4 border-t border-slate-800 text-[11px] text-red-300 font-semibold">
+                            ⚠️ Faisabilité Financière : Risque Majeur sur la Notation de la Dette Publique Consolidée.
+                        </footer>
+                    </article>
+
+                    <!-- Scenario 2 -->
+                    <article class="bg-slate-900 border border-blue-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-blue-950 text-blue-400 text-xs font-bold rounded-full border border-blue-800 mb-3">Scénario 2</span>
+                            <h3 class="text-lg font-bold text-white">Belgique à Quatre Régions d'Égales Compétences</h3>
+                            <p class="text-xs text-slate-400 mt-1">Porté par : Acteurs régionalistes wallons & bruxellois</p>
+                            
+                            <ul class="mt-4 text-xs text-slate-300 space-y-2.5">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-blue-400 font-bold">•</span>
+                                    <span><strong>Structure :</strong> Suppression du niveau communautaire. Quatre Régions de pleins pouvoirs (Flandre, Wallonie, Bruxelles, Ostbelgien).</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-blue-400 font-bold">•</span>
+                                    <span><strong>Émancipation de Bruxelles :</strong> Région à part entière gérant l'enseignement et la culture sur son territoire.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-blue-400 font-bold">•</span>
+                                    <span><strong>Simplification :</strong> Fin des chevauchements de compétences entre Régions et Communautés sur un même sol.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <footer class="pt-4 border-t border-slate-800 text-[11px] text-blue-300 font-semibold">
+                            ⚠️ Faisabilité Politique : Veto Flamand Historique sur la Séparation de Bruxelles de la Flandre.
+                        </footer>
+                    </article>
+
+                    <!-- Scenario 3 -->
+                    <article class="bg-slate-900 border border-emerald-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-emerald-950 text-emerald-400 text-xs font-bold rounded-full border border-emerald-800 mb-3">Scénario 3</span>
+                            <h3 class="text-lg font-bold text-white">Refédéralisation Fonctionnelle & Circonscription Unique</h3>
+                            <p class="text-xs text-slate-400 mt-1">Porté par : Groupe Re-Bel, Proposition Pavia, Société Civile</p>
+                            
+                            <ul class="mt-4 text-xs text-slate-300 space-y-2.5">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-400 font-bold">•</span>
+                                    <span><strong>Arène Politique :</strong> Création d'une circonscription électorale fédérale unique pour 15 à 20 % des députés fédéraux.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-400 font-bold">•</span>
+                                    <span><strong>Recentralisation Ciblée :</strong> Retour au niveau fédéral des compétences Climat, Énergie, Soins de Santé de base et Mobilité ferroviaire.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-400 font-bold">•</span>
+                                    <span><strong>Gouvernance :</strong> Décisions prises à la majorité simple sans mécanismes de blocage systématiques.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <footer class="pt-4 border-t border-slate-800 text-[11px] text-emerald-300 font-semibold">
+                            ✅ Faisabilité Fonctionnelle : Seul Modèle Garantissant la Stabilité Budgétaire Globale.
+                        </footer>
+                    </article>
+
+                </div>
+            </section>
+
+        </article>
+
+    </main>
+
+    <!-- FOOTER SÉMANTIQUE & SEO -->
+    <footer role="contentinfo" class="mt-20 bg-slate-950 border-t border-slate-800 text-slate-400 py-10 px-4 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <p class="font-bold text-slate-200 text-sm">Boule de Cristal 2035 — Observatoire de la Polycrise Belge</p>
+                <p class="text-slate-500 mt-1">Laboratoire d'analyse prospective, simulation macro-budgétaire et référentiel sémantique W3C / Schema.org.</p>
+            </div>
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/boule/" class="text-amber-400 hover:underline">URL Canonique Officielle</a>
+                <span>•</span>
+                <a href="https://ouaisfieu.github.io/octobre/rouge/yellow/submarine/stou/" class="hover:underline text-slate-300">Hub Synthèse Audio</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIXED BOTTOM AUDIO PLAYER BAR -->
+    <aside aria-label="Lecteur audio fixe" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur border-t border-slate-800 text-white px-4 py-3 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+            
+            <!-- Currently Playing Info -->
+            <div class="flex items-center gap-3 w-full md:w-1/3">
+                <div aria-hidden="true" class="flex items-end gap-0.5 h-6 w-6 justify-center bg-slate-800 rounded p-1" id="audio-wave-bars">
+                    <span class="w-1 bg-amber-500 rounded-full h-2"></span>
+                    <span class="w-1 bg-amber-500 rounded-full h-3"></span>
+                    <span class="w-1 bg-amber-500 rounded-full h-1"></span>
+                </div>
+                <div class="truncate">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Synthèse Vocale Interactive</span>
+                    <span id="player-track-title" class="text-xs font-bold text-amber-400 truncate block">
+                        1. Présentation & Genèse de la Polycrise
+                    </span>
+                </div>
+            </div>
+
+            <!-- Playback Controls -->
+            <div class="flex items-center justify-center gap-4 w-full md:w-1/3">
+                <button onclick="prevChapter()" aria-label="Chapitre précédent" class="text-slate-400 hover:text-white text-base transition">
+                    ⏮️
+                </button>
+                <button id="main-play-btn" onclick="togglePlayPause()" aria-label="Lecture ou pause" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-2.5 rounded-full font-bold text-sm transition shadow-lg flex items-center justify-center w-9 h-9">
+                    ▶️
+                </button>
+                <button onclick="nextChapter()" aria-label="Chapitre suivant" class="text-slate-400 hover:text-white text-base transition">
+                    ⏭️
+                </button>
+                <button onclick="stopAudio()" aria-label="Arrêter la lecture" class="text-slate-400 hover:text-red-400 text-xs transition">
+                    ⏹️
+                </button>
+            </div>
+
+            <!-- Speed & Progress -->
+            <div class="flex items-center justify-end gap-3 w-full md:w-1/3 text-xs">
+                <span id="player-time" class="text-slate-400 font-mono text-[11px]">00:00</span>
+                <div class="w-full max-w-[100px] bg-slate-800 h-1.5 rounded-full overflow-hidden" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div id="player-progress-bar" class="bg-amber-500 h-full w-0 transition-all"></div>
+                </div>
+                <label for="speed-select" class="sr-only">Vitesse de lecture</label>
+                <select id="speed-select" onchange="changeSpeed(this.value)" class="bg-slate-800 border border-slate-700 text-slate-200 rounded px-1.5 py-1 text-[11px]">
+                    <option value="1">1.0x</option>
+                    <option value="1.2">1.2x</option>
+                    <option value="1.5" selected>1.5x</option>
+                    <option value="1.8">1.8x</option>
+                </select>
+            </div>
+
+        </div>
+    </aside>
+
+    <!-- JAVASCRIPT LOGIC, SIMULATION ENGINE & CHARTS -->
+    <script>
+        // AUDIO CHAPTER DATA
+        const audioChapters = [
+            {
+                id: "intro",
+                title: "1. Présentation & Genèse de la Polycrise Belge",
+                tab: "simulator",
+                text: "Bienvenue dans le laboratoire prospectif de la polycrise belge. La polycrise désigne l'accumulation simultanée et l'interaction perverse de plusieurs chocs : crise budgétaire, explosion des dépenses de santé et blocage de la réforme de l'État. L'absence de partis fédéraux et la particratie unilingue incitent à reporter les arbitrages nécessaires, créant un effet de dérive automatique des finances publiques."
+            },
+            {
+                id: "budget",
+                title: "2. Impasse Budgétaire & Choc LSF 2034",
+                tab: "budget",
+                text: "À politique inchangée, le déficit fédéral belge risque d'atteindre 44,5 milliards d'euros en 2031, poussé par un effet boule de neige où les charges d'intérêts augmentent de 87 %. En parallèle, la Loi Spéciale de Financement réduit progressivement ses dotations de transition pour la Wallonie et Bruxelles, accentuant la pression sur les notations souveraines régionales."
+            },
+            {
+                id: "social",
+                title: "3. Le Choc des 500 000 Invalides INAMI",
+                tab: "social",
+                text: "Sur le plan social, le cap des 500 000 personnes en incapacité de longue durée a été franchi. Avec un coût annuel de 15,9 milliards d'euros pour l'INAMI, ce poste dépasse désormais le budget global des allocations de chômage. Ce phénomène découle du relèvement de l'âge effectif de départ à la retraite et de l'usure professionnelle."
+            },
+            {
+                id: "climat",
+                title: "4. Fédéralisme Climatique & Prix Carbone ETS2",
+                tab: "climat",
+                text: "En matière climatique, la Belgique doit réduire de 47 % ses émissions non-ETS d'ici 2030. L'absence d'accord de répartition entre Flandre, Wallonie et Bruxelles risque d'entraîner des sanctions européennes. De plus, l'introduction de l'ETS2 dès 2027 augmentera directement le coût des carburants et du chauffage pour les ménages."
+            },
+            {
+                id: "scenarios",
+                title: "5. Les Trois Scénarios Institutionnels 2035",
+                tab: "scenarios",
+                text: "Trois trajectoires s'ouvrent pour l'avenir du pays : le confédéralisme fondé sur deux États souverains avec co-gestion de Bruxelles, la Belgique à quatre Régions d'égales compétences sans niveau communautaire, et la refédéralisation fonctionnelle appuyée par une circonscription électorale fédérale unique."
+            }
+        ];
+
+        // GLOBAL STATE
+        let currentChapterIndex = 0;
+        let isPlaying = false;
+        let speechSynth = window.speechSynthesis;
+        let currentUtterance = null;
+        let audioProgressTimer = null;
+        let currentProgressSeconds = 0;
+
+        // CHART INSTANCES
+        let simChartInstance = null;
+        let debtChartInstance = null;
+        let socialChartInstance = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            updateSimulation();
+            loadChapterContent(0);
+        });
+
+        // TAB SWITCHING
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-500', 'text-slate-950', 'font-extrabold', 'shadow-md');
+                btn.classList.add('text-slate-300');
+                btn.setAttribute('aria-selected', 'false');
+            });
+
+            const activeContent = document.getElementById(`sec-${tabId}`);
+            if (activeContent) activeContent.classList.remove('hidden');
+
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-amber-500', 'text-slate-950', 'font-extrabold', 'shadow-md');
+                activeBtn.classList.remove('text-slate-300');
+                activeBtn.setAttribute('aria-selected', 'true');
+            }
+        }
+
+        // SIMULATION MATHEMATICAL ENGINE
+        function updateSimulation() {
+            const effort = parseFloat(document.getElementById('range-effort').value);
+            const inami = parseFloat(document.getElementById('range-inami').value);
+            const emploi = parseFloat(document.getElementById('range-emploi').value);
+            const lsf = parseFloat(document.getElementById('range-lsf').value);
+            const ets2 = parseFloat(document.getElementById('range-ets2').value);
+
+            // Update UI Labels
+            document.getElementById('val-effort').innerText = `${effort.toFixed(1)} Mrd €/an`;
+            document.getElementById('val-inami').innerText = `${inami.toFixed(1)} % / an`;
+            document.getElementById('val-emploi').innerText = `${emploi.toFixed(1)} % en 2030`;
+            document.getElementById('val-lsf').innerText = `${lsf} % (${lsf > 70 ? 'Élevé' : lsf > 30 ? 'Modéré' : 'Faible'})`;
+            document.getElementById('val-ets2').innerText = `${ets2} € / t`;
+
+            // Compute Base Formula outputs
+            // Base Baseline 2031 Deficit = 44.5 Mrd €
+            const deficit2031 = Math.max(8.0, 44.5 - (effort * 0.85) + ((inami - 2.0) * 4.2) - ((emploi - 72.0) * 1.5));
+            // Base Debt/GDP 2035 = 122%
+            const dettePib2035 = Math.max(92.0, 122.0 - (effort * 1.1) + ((inami - 2.0) * 3.5) - ((emploi - 72.0) * 1.8) + (lsf * 0.05));
+            // Interest Charge 2035
+            const interets2035 = Math.max(11.0, 23.7 - (effort * 0.35) + (dettePib2035 * 0.08));
+            // Fuel Surcharge / month
+            const surcoutCarburant = (ets2 * 0.26);
+
+            // Render Output Cards
+            document.getElementById('out-dette-pib').innerText = `${dettePib2035.toFixed(1)} %`;
+            document.getElementById('out-deficit-2031').innerText = `${deficit2031.toFixed(1)} Mrd €`;
+            document.getElementById('out-interets').innerText = `${interets2035.toFixed(1)} Mrd €`;
+            document.getElementById('out-carburant').innerText = `+${surcoutCarburant.toFixed(1)} €/mois`;
+
+            // Risk Assessment Badge
+            const riskBadge = document.getElementById('out-eu-risk');
+            if (deficit2031 > 25.0 || dettePib2035 > 115.0) {
+                riskBadge.className = "p-2.5 rounded text-xs font-bold text-center bg-red-950 text-red-300 border border-red-800";
+                riskBadge.innerText = "🚨 Risque Procédure Européenne (PDE) : TRÈS ÉLEVÉ (Astreintes d'Amende)";
+            } else if (deficit2031 > 18.0) {
+                riskBadge.className = "p-2.5 rounded text-xs font-bold text-center bg-amber-950 text-amber-300 border border-amber-800";
+                riskBadge.innerText = "⚠️ Risque Procédure Européenne (PDE) : MODÉRÉ (Sous Surveillance Stricte)";
+            } else {
+                riskBadge.className = "p-2.5 rounded text-xs font-bold text-center bg-emerald-950 text-emerald-300 border border-emerald-800";
+                riskBadge.innerText = "✅ Conforme aux Critères du Traité de Gouvernance Européen";
+            }
+
+            // Update Commentary Text
+            const commentary = document.getElementById('sim-commentary');
+            commentary.innerHTML = `
+                <strong class="text-amber-400">Analyse Prospective de vos Réglages :</strong> 
+                Avec un effort de consolidation de <strong>${effort.toFixed(1)} Mrd €</strong> et un taux d'emploi projeté à <strong>${emploi}%</strong>, la trajectoire de la dette atteint <strong>${dettePib2035.toFixed(1)}% du PIB</strong> en 2035. 
+                ${lsf > 50 ? "La forte responsabilisation régionale sous la LSF transfère la pression d'assainissement vers la Wallonie et Bruxelles." : "La faible responsabilisation LSF maintient le fardeau principal sur le pouvoir fédéral."}
+            `;
+
+            // Recalculate Chart Data Points (2024 to 2035)
+            if (simChartInstance) {
+                const years = ['2024', '2026', '2028', '2030', '2032', '2035'];
+                const simDeficitTrajectory = [
+                    27.5,
+                    Math.max(10, 30.2 - effort * 0.3),
+                    Math.max(8, 34.0 - effort * 0.6 + (inami - 2.5) * 2),
+                    Math.max(6, deficit2031 * 0.9),
+                    Math.max(5, deficit2031),
+                    Math.max(4, deficit2031 * 1.1 - (emploi - 75) * 0.8)
+                ];
+                const simDebtTrajectory = [
+                    105.2,
+                    108.0,
+                    110.5 - effort * 0.2,
+                    114.0 - effort * 0.5 + (inami - 2.0) * 1.5,
+                    118.0 - effort * 0.8,
+                    dettePib2035
+                ];
+
+                simChartInstance.data.datasets[0].data = simDeficitTrajectory;
+                simChartInstance.data.datasets[1].data = simDebtTrajectory;
+                simChartInstance.update();
+            }
+        }
+
+        // PRESET APPLIER
+        function applyPreset(type) {
+            const tag = document.getElementById('sim-scenario-tag');
+            if (type === 'statusquo') {
+                document.getElementById('range-effort').value = 0;
+                document.getElementById('range-inami').value = 3.2;
+                document.getElementById('range-emploi').value = 72.0;
+                document.getElementById('range-lsf').value = 30;
+                document.getElementById('range-ets2').value = 45;
+                tag.innerText = "Status Quo / Inaction";
+            } else if (type === 'arizona') {
+                document.getElementById('range-effort').value = 23;
+                document.getElementById('range-inami').value = 2.0;
+                document.getElementById('range-emploi').value = 78.0;
+                document.getElementById('range-lsf').value = 50;
+                document.getElementById('range-ets2').value = 55;
+                tag.innerText = "Plan Arizona Strict";
+            } else if (type === 'confederal') {
+                document.getElementById('range-effort').value = 15;
+                document.getElementById('range-inami').value = 2.2;
+                document.getElementById('range-emploi').value = 76.0;
+                document.getElementById('range-lsf').value = 100;
+                document.getElementById('range-ets2').value = 70;
+                tag.innerText = "Choc Confédéral";
+            } else if (type === 'green') {
+                document.getElementById('range-effort').value = 18;
+                document.getElementById('range-inami').value = 2.8;
+                document.getElementById('range-emploi').value = 77.0;
+                document.getElementById('range-lsf').value = 20;
+                document.getElementById('range-ets2').value = 110;
+                tag.innerText = "Accord Écologique";
+            }
+            updateSimulation();
+        }
+
+        // INITIALIZE CHARTS
+        function initCharts() {
+            // 1. SIMULATOR CHART
+            const ctxSim = document.getElementById('simChart').getContext('2d');
+            simChartInstance = new Chart(ctxSim, {
+                type: 'bar',
+                data: {
+                    labels: ['2024', '2026', '2028', '2030', '2032', '2035'],
+                    datasets: [
+                        {
+                            label: 'Déficit Fédéral Simulé (Mrd €)',
+                            data: [27.5, 25.7, 28.0, 32.0, 38.0, 42.0],
+                            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                            borderColor: 'rgba(239, 68, 68, 1)',
+                            borderWidth: 1,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Ratio Dette / PIB Simulé (%)',
+                            data: [105.2, 108.0, 111.0, 115.0, 118.0, 122.0],
+                            type: 'line',
+                            borderColor: 'rgba(245, 158, 11, 1)',
+                            backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#f8fafc', font: { size: 11 } } },
+                        tooltip: { mode: 'index', intersect: false }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            ticks: { color: '#f8fafc' },
+                            title: { display: true, text: 'Déficit (Mrd €)', color: '#ef4444' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            ticks: { color: '#f59e0b' },
+                            title: { display: true, text: 'Dette / PIB (%)', color: '#f59e0b' },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+
+            // 2. DEBT & INTEREST CHART
+            const ctxDebt = document.getElementById('debtChart').getContext('2d');
+            debtChartInstance = new Chart(ctxDebt, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2022', '2024', '2026', '2028', '2031'],
+                    datasets: [
+                        {
+                            label: 'Charge Annuelle d\'Intérêts (Mrd €)',
+                            data: [8.2, 8.9, 10.0, 12.7, 16.4, 23.7],
+                            borderColor: 'rgba(245, 158, 11, 1)',
+                            backgroundColor: 'rgba(245, 158, 11, 0.15)',
+                            fill: true,
+                            borderWidth: 3,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Déficit Fédéral Nominal (Mrd €)',
+                            data: [22.0, 24.1, 27.5, 25.7, 32.4, 44.5],
+                            borderColor: 'rgba(239, 68, 68, 1)',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#f8fafc', font: { size: 11 } } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: { ticks: { color: '#f8fafc' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                    }
+                }
+            });
+
+            // 3. SOCIAL CROSSOVER CHART
+            const ctxSocial = document.getElementById('socialChart').getContext('2d');
+            socialChartInstance = new Chart(ctxSocial, {
+                type: 'line',
+                data: {
+                    labels: ['2010', '2013', '2016', '2019', '2022', '2024', '2026'],
+                    datasets: [
+                        {
+                            label: 'Incapacité Longue Durée INAMI (>1 an)',
+                            data: [265000, 312000, 390765, 435000, 485000, 502000, 520000],
+                            borderColor: 'rgba(245, 158, 11, 1)',
+                            backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                            fill: true,
+                            borderWidth: 3,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Chômeurs Indemnisés',
+                            data: [420000, 410000, 376196, 340000, 310000, 295000, 280000],
+                            borderColor: 'rgba(148, 163, 184, 1)',
+                            borderDash: [4, 4],
+                            borderWidth: 2,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#f8fafc', font: { size: 11 } } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: { ticks: { color: '#f8fafc' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                    }
+                }
+            });
+        }
+
+        // AUDIO SPEECH SYNTHESIS CONTROLS
+        function loadChapterContent(idx) {
+            currentChapterIndex = idx;
+            const ch = audioChapters[idx];
+            document.getElementById('player-track-title').innerText = ch.title;
+        }
+
+        function playChapter(idx) {
+            loadChapterContent(idx);
+            switchTab(audioChapters[idx].tab);
+            playAudio();
+        }
+
+        function playAllChapters() {
+            loadChapterContent(0);
+            playAudio();
+        }
+
+        function playAudio() {
+            stopAudio();
+            const textToRead = audioChapters[currentChapterIndex].text;
+            
+            if ('speechSynthesis' in window) {
+                currentUtterance = new SpeechSynthesisUtterance(textToRead);
+                currentUtterance.lang = 'fr-FR';
+                const speed = parseFloat(document.getElementById('speed-select').value) || 1.5;
+                currentUtterance.rate = speed;
+
+                currentUtterance.onend = function() {
+                    if (currentChapterIndex < audioChapters.length - 1) {
+                        nextChapter();
+                    } else {
+                        stopAudio();
+                    }
+                };
+
+                speechSynth.speak(currentUtterance);
+            }
+
+            isPlaying = true;
+            updatePlayerUI();
+            startProgressSimulation();
+        }
+
+        function togglePlayPause() {
+            if (!isPlaying) {
+                if (speechSynth.paused) {
+                    speechSynth.resume();
+                    isPlaying = true;
+                    updatePlayerUI();
+                } else {
+                    playAudio();
+                }
+            } else {
+                if (speechSynth.speaking) {
+                    speechSynth.pause();
+                }
+                isPlaying = false;
+                updatePlayerUI();
+            }
+        }
+
+        function stopAudio() {
+            if ('speechSynthesis' in window) {
+                speechSynth.cancel();
+            }
+            isPlaying = false;
+            clearInterval(audioProgressTimer);
+            currentProgressSeconds = 0;
+            updatePlayerUI();
+        }
+
+        function nextChapter() {
+            if (currentChapterIndex < audioChapters.length - 1) {
+                loadChapterContent(currentChapterIndex + 1);
+                playAudio();
+            }
+        }
+
+        function prevChapter() {
+            if (currentChapterIndex > 0) {
+                loadChapterContent(currentChapterIndex - 1);
+                playAudio();
+            }
+        }
+
+        function changeSpeed(val) {
+            if (isPlaying) playAudio();
+        }
+
+        function updatePlayerUI() {
+            const btn = document.getElementById('main-play-btn');
+            const waveBars = document.getElementById('audio-wave-bars');
+            
+            if (isPlaying) {
+                btn.innerHTML = '⏸️';
+                waveBars.classList.add('animate-pulse');
+            } else {
+                btn.innerHTML = '▶️';
+                waveBars.classList.remove('animate-pulse');
+            }
+        }
+
+        function startProgressSimulation() {
+            clearInterval(audioProgressTimer);
+            currentProgressSeconds = 0;
+
+            audioProgressTimer = setInterval(() => {
+                if (isPlaying) {
+                    currentProgressSeconds++;
+                    const pct = Math.min((currentProgressSeconds / 35) * 100, 100);
+                    const progressBar = document.getElementById('player-progress-bar');
+                    progressBar.style.width = `${pct}%`;
+                    
+                    const mins = Math.floor(currentProgressSeconds / 60).toString().padStart(2, '0');
+                    const secs = (currentProgressSeconds % 60).toString().padStart(2, '0');
+                    document.getElementById('player-time').innerText = `${mins}:${secs}`;
+
+                    if (pct >= 100) clearInterval(audioProgressTimer);
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
